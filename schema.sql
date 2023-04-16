@@ -21,8 +21,8 @@ CREATE TABLE role (
   name VARCHAR(100)
 );
 
--- Creates the table "role" within mybusiness_db --
-CREATE TABLE role (
+-- Creates the table "employee" within mybusiness_db --
+CREATE TABLE employee (
   -- Creates a numeric column called "id" which will automatically increment its default value as we create new rows --
   id INT,
   -- Makes a string column called "name" which cannot contain null --
