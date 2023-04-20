@@ -1,3 +1,4 @@
+//npm i inquirer@8.2.4
 const express = require('express');
 // Import and require mysql2
 const mysql = require('mysql2');
