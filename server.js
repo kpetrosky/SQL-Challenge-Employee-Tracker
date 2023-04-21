@@ -1,6 +1,7 @@
 //npm i inquirer@8.2.4
 //mysql -u root -p
 //SOURCE schema.sql;
+//SOURCE insert-schema.sql;
 //SHOW databases;
 //SHOW tables;
 
