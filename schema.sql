@@ -5,26 +5,23 @@ CREATE DATABASE mybusiness_db;
 -- Use the mybusiness_db --
 USE mybusiness_db;
 
--- Creates the table "department" within mybusiness_db --
--- CREATE TABLE department (
---   -- Creates a numeric column called "id" which will automatically increment its default value as we create new rows --
---   id INT NOT NULL,
---   -- Makes a string column called "name" which cannot contain null --
---   name VARCHAR(100) NOT NULL
--- );
+CREATE TABLE employees (
+    id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    job_title VARCHAR(50),
+    manager_id INT,
+    FOREIGN KEY (manager_id) REFERENCES employees(id)
+);
 
--- -- Creates the table "role" within mybusiness_db --
--- CREATE TABLE roles (
---   -- Creates a numeric column called "id" which will automatically increment its default value as we create new rows --
---   id INT NOT NULL,
---   -- Makes a string column called "name" which cannot contain null --
---   name VARCHAR(100) NOT NULL
--- );
+CREATE TABLE department (
+  id INT PRIMARY KEY,
+  name VARCHAR(255)
+);
 
--- -- Creates the table "employee" within mybusiness_db --
--- CREATE TABLE employees (
---   -- Creates a numeric column called "id" which will automatically increment its default value as we create new rows --
---   id INT NOT NULL,
---   -- Makes a string column called "name" which cannot contain null --
---   name VARCHAR(100) NOT NULL
--- );
+CREATE TABLE roles (
+  id INT PRIMARY KEY,
+  name VARCHAR(255),
+  department VARCHAR(255),
+  salary INT
+);
