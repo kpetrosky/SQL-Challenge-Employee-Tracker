@@ -1,4 +1,6 @@
 //npm i inquirer@8.2.4
+//npm i dotenv mysql2 console.table
+//npm init -y
 //mysql -u root -p
 //SOURCE schema.sql;
 //SOURCE insert-schema.sql;
@@ -6,16 +8,13 @@
 //SHOW tables;
 
 
-const express = require('express');
+
 // Import and require mysql2
 const mysql = require('mysql2');
-
-const PORT = process.env.PORT || 3001;
-const app = express();
-
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const inquirer = require('inquirer');
+const { throwError } = require('rxjs');
+require("console.table");
+require("dotenv").config();
 
 // Connect to database
 const db = mysql.createConnection(
@@ -24,22 +23,54 @@ const db = mysql.createConnection(
     // MySQL username,
     user: 'root',
     // MySQL password
-    password: '',
+    password: process.env.DB_PASSWORD,
     database: 'mybusiness_db'
   },
   console.log(`Connected to the classlist_db database.`)
 );
 
-// Query database
-db.query('SELECT * FROM students', function (err, results) {
-  console.log(results);
+db.connect((err) => {
+if(err)throw err;
+menuOptions();
 });
 
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-  res.status(404).end();
-});
+function menuOptions() {
+  inquirer.prompt([
+    {type: "list",
+    name: "options",
+    message: "What would you like to see?",
+    choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role'],
+    }
+  ]).then((answers) =>{ 
+    if (answers.options === 'view all departments') {
+      viewDepartments(); 
+    } else if(answers.options  === 'view all roles') {
+      //execute view roles function here
+    }else if(answers.options === 'view all employees') {
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+    }
+    else if(answers.options=== 'add a department') {
+      
+    }
+    else if(answers.options=== 'add a role') {
+      
+    }
+    else if(answers.options=== 'add an employee') {
+      
+    }else if(answers.options=== 'update an employee role') {
+      
+    }
+  })
+}
+
+
+
+function viewDepartments() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+//need function similar to line 55 for each option called within the if else statements

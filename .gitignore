@@ -1,0 +1,4 @@
+node_modules
+.env
+
+# files that won't go up to git repo
