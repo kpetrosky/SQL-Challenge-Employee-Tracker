@@ -1,11 +1,5 @@
-UPDATE employees SET job_title = 'Manager'
-WHERE id IN (SELECT manager_id FROM employees WHERE manager_id IS NOT NULL);
-ALTER TABLE employees DROP FOREIGN KEY employees_ibfk_1;
-ALTER TABLE employees ADD CONSTRAINT employees_ibfk_1 FOREIGN KEY (manager_id) REFERENCES employees(id) ON DELETE SET NULL;
 
-
-
-INSERT INTO department (id, name)
+INSERT INTO department_id (name)
 VALUES
     (001, 'Finance'),
     (002, 'Marketing'),
@@ -14,7 +8,7 @@ VALUES
     (005, 'Information Technology'),
     (006, 'Customer Service');
 
-INSERT INTO roles (id, name, department, salary)
+INSERT INTO roles_id (name, department, salary)
 VALUES
     (001, 'Executive', 'Operations Management', 200000),
     (002, 'Production Manager', 'Operations Management', 100000),
@@ -28,9 +22,9 @@ VALUES
 
 
 
-INSERT INTO employees (id, first_name, last_name, job_title, manager_id)
+INSERT INTO employees_ (first_name, last_name, job_title, manager_id)
 VALUES
-    (001, 'Bernard', 'Foley', 'Executive', NULL),
+    (001, 'Bernard', 'Foley', 'Executive', 1),
     (002, 'Cindy', 'Casey', 'Human Resource Manager', 1),
     (003, 'Chelsea', 'Watson', 'Customer Representative', 5),
     (004, 'Jaylen', 'McDaniel', 'Human Resource Personnel', 2),
@@ -45,14 +39,5 @@ VALUES
     (013, 'Ivan', 'Ellison', 'Customer Representative', 5);
 
 
-
-
-
-UPDATE employees SET job_title = 'Manager'
-WHERE id IN (
-  SELECT manager_id FROM (
-    SELECT * FROM employees
-  ) AS e WHERE e.manager_id IS NOT NULL
-);
 
 
