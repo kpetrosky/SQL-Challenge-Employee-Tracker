@@ -6,7 +6,7 @@
 //SOURCE insert-schema.sql;
 //SHOW databases;
 //SHOW tables;
-
+//node server.js
 
 
 // Import and require mysql2
@@ -30,35 +30,42 @@ const db = mysql.createConnection(
 );
 
 db.connect((err) => {
-if(err)throw err;
-menuOptions();
+  if (err) throw err;
+  menuOptions();
 });
 
 function menuOptions() {
   inquirer.prompt([
-    {type: "list",
-    name: "options",
-    message: "What would you like to see?",
-    choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role'],
-    }
-  ]).then((answers) =>{ 
+    {
+      type: "list",
+      name: "options",
+      message: "What would you like to see?",
+      choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role'],
+    },
+
+    {
+      type: "imput",
+      name: "update",
+      message: "Please update the employee's role?",
+    },
+  ]).then((answers) => {
     if (answers.options === 'view all departments') {
-      viewDepartments(); 
-    } else if(answers.options  === 'view all roles') {
+      viewDepartments();
+    } else if (answers.options === 'view all roles') {
       viewRoles();
       //execute view roles function here
-    }else if(answers.options === 'view all employees') {
+    } else if (answers.options === 'view all employees') {
       viewEmployees();
     }
-    else if(answers.options=== 'add a department') {
+    else if (answers.options === 'add a department') {
       addDepartment();
     }
-    else if(answers.options=== 'add a role') {
+    else if (answers.options === 'add a role') {
       addRole();
     }
-    else if(answers.options=== 'add an employee') {
-     addEmployee(); 
-    }else if(answers.options=== 'update an employee role') {
+    else if (answers.options === 'add an employee') {
+      addEmployee();
+    } else if (answers.options === 'update an employee role') {
       updateEmployee();
     }
   })
