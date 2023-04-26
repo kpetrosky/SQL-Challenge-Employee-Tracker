@@ -45,20 +45,21 @@ function menuOptions() {
     if (answers.options === 'view all departments') {
       viewDepartments(); 
     } else if(answers.options  === 'view all roles') {
+      viewRoles();
       //execute view roles function here
     }else if(answers.options === 'view all employees') {
-
+      viewEmployees();
     }
     else if(answers.options=== 'add a department') {
-      
+      addDepartment();
     }
     else if(answers.options=== 'add a role') {
-      
+      addRole();
     }
     else if(answers.options=== 'add an employee') {
-      
+     addEmployee(); 
     }else if(answers.options=== 'update an employee role') {
-      
+      updateEmployee();
     }
   })
 }
@@ -74,3 +75,50 @@ function viewDepartments() {
 }
 
 //need function similar to line 55 for each option called within the if else statements
+function viewRoles() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+function viewEmployees() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+function addDepartment() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+function addRole() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+function addEmployee() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
+
+function updateEmployee() {
+  // Query database
+  db.query('SELECT * FROM department', function (err, results) {
+    console.table(results);
+    menuOptions();
+  });
+}
