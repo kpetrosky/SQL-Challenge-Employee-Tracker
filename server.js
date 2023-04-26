@@ -45,6 +45,11 @@ function menuOptions() {
 
     {
       type: "imput",
+      name: "add",
+      message: "Please add employee name and their role?",
+    },
+    {
+      type: "imput",
       name: "update",
       message: "Please update the employee's role?",
     },
@@ -68,6 +73,7 @@ function menuOptions() {
     } else if (answers.options === 'update an employee role') {
       updateEmployee();
     }
+    
   })
 }
 
