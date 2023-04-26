@@ -46,7 +46,7 @@ function menuOptions() {
     {
       type: "imput",
       name: "add",
-      message: "Please add employee name and their role?",
+      message: "Please add employee name?",
     },
     {
       type: "imput",
@@ -66,12 +66,13 @@ function menuOptions() {
       addDepartment();
     }
     else if (answers.options === 'add a role') {
-      addRole();
+      addUpdate();
     }
     else if (answers.options === 'add an employee') {
-      addEmployee();
-    } else if (answers.options === 'update an employee role') {
-      updateEmployee();
+      addUpdate();
+    } 
+    else if (answers.options === 'update an employee role') {
+      addUpdate();
     }
     
   })
@@ -90,7 +91,7 @@ function viewDepartments() {
 //need function similar to line 55 for each option called within the if else statements
 function viewRoles() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
+  db.query('SELECT * FROM roles', function (err, results) {
     console.table(results);
     menuOptions();
   });
@@ -98,7 +99,7 @@ function viewRoles() {
 
 function viewEmployees() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
+  db.query('SELECT * FROM employees', function (err, results) {
     console.table(results);
     menuOptions();
   });
@@ -114,7 +115,7 @@ function addDepartment() {
 
 function addRole() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
+  db.query('SELECT * FROM role', function (err, results) {
     console.table(results);
     menuOptions();
   });
@@ -122,7 +123,7 @@ function addRole() {
 
 function addEmployee() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
+  db.query('SELECT * FROM employees', function (err, results) {
     console.table(results);
     menuOptions();
   });
@@ -135,3 +136,14 @@ function updateEmployee() {
     menuOptions();
   });
 }
+  // Call your menuOptions() function or any other code that you need to run after connecting to the database here.
+
+  // Define the addUpdate function to insert a new record to the customers table.
+  function addUpdate() {
+    var sql = "INSERT INTO department (role, employee) VALUES ('employees', 'role')";
+    db.query(sql, function (err, result) {
+      if (err) throw err;
+      console.log("1 record inserted, ID: " + result.insertId);
+    });
+  }
+  
