@@ -26,7 +26,7 @@ const db = mysql.createConnection(
     password: process.env.DB_PASSWORD,
     database: 'mybusiness_db'
   },
-  console.log(`Connected to the classlist_db database.`)
+  console.log(`Connected to the mybusiness_db database.`)
 );
 
 db.connect((err) => {
@@ -42,17 +42,6 @@ function menuOptions() {
       message: "What would you like to see?",
       choices: ['view all departments', 'view all roles', 'view all employees', 'add a department', 'add a role', 'add an employee', 'update an employee role'],
     },
-
-    {
-      type: "imput",
-      name: "add",
-      message: "Please add employee name?",
-    },
-    {
-      type: "imput",
-      name: "update",
-      message: "Please update the employee's role?",
-    },
   ]).then((answers) => {
     if (answers.options === 'view all departments') {
       viewDepartments();
@@ -66,15 +55,15 @@ function menuOptions() {
       addDepartment();
     }
     else if (answers.options === 'add a role') {
-      addUpdate();
+      addRole();
     }
     else if (answers.options === 'add an employee') {
-      addUpdate();
-    } 
-    else if (answers.options === 'update an employee role') {
-      addUpdate();
+      addEmployee();
     }
-    
+    else if (answers.options === 'update an employee role') {
+      updateEmployee();
+    }
+
   })
 }
 
@@ -107,43 +96,81 @@ function viewEmployees() {
 
 function addDepartment() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
-    console.table(results);
-    menuOptions();
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Whats the name of the new Department?",
+      name: "dept"
+    }
+  ]).then((answers) => {
+    db.query('INSERT INTO department (name) VALUES(?)', answers.dept, function (err, results) {
+      console.table(results);
+      menuOptions();
+    })
+
   });
 }
 
 function addRole() {
   // Query database
-  db.query('SELECT * FROM role', function (err, results) {
-    console.table(results);
-    menuOptions();
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Whats the name of the new role?",
+      name: "role"
+    },
+    {
+      type: "input",
+      message: "Whats the salary of the new role?",
+      name: "salary"
+    },
+    {
+      type: "input",
+      message: "Whats the department of the new role?",
+      name: "department"
+    },
+  ]).then((answers) => {
+    db.query('INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)', [answers.title, answers.salary, answers.department_id], function (err, results) {
+      console.table(results);
+      menuOptions();
+    })
   });
 }
 
+
 function addEmployee() {
   // Query database
-  db.query('SELECT * FROM employees', function (err, results) {
-    console.table(results);
-    menuOptions();
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Whats the name of the new employee?",
+      name: "employee"
+    }
+  ]).then((answers) => {
+    db.query('INSERT INTO employee (name) VALUES(?)', answers.employee, function (err, results) {
+      console.table(results);
+      menuOptions();
+    })
   });
 }
 
 function updateEmployee() {
   // Query database
-  db.query('SELECT * FROM department', function (err, results) {
-    console.table(results);
-    menuOptions();
+  inquirer.prompt([
+    {
+      type: "input",
+      message: "Whats the name of employee?",
+      name: "updateEmployment"
+    },
+    {
+      type: "input",
+      message: "Whats the new role of the employee?",
+      name: "updateEmployment"
+    }
+  ]).then((answers) => {
+    db.query('INSERT INTO employee (name) VALUES(?)', answers.updateEmployee, function (err, results) {
+      console.table(results);
+      menuOptions();
+    })
   });
 }
-  // Call your menuOptions() function or any other code that you need to run after connecting to the database here.
-
-  // Define the addUpdate function to insert a new record to the customers table.
-  function addUpdate() {
-    var sql = "INSERT INTO department (role, employee) VALUES ('employees', 'role')";
-    db.query(sql, function (err, result) {
-      if (err) throw err;
-      console.log("1 record inserted, ID: " + result.insertId);
-    });
-  }
-  
