@@ -7,7 +7,7 @@
 //SHOW databases;
 //SHOW tables;
 //node server.js
-//gonna use insomnia
+
 
 
 // Import and require mysql2
