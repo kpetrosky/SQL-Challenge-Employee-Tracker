@@ -1,28 +1,24 @@
-# SQL-Challenge-Employee-Tracker
-User story:
-AS A business owner
-I WANT to be able to view and manage the departments, roles, and employees in my company
-SO THAT I can organize and plan my business
+Description:
+The SQL Challenge: Employee Tracker is a command-line application designed to help business owners efficiently manage their company's employee database. Built using Node.js, Inquirer, and MySQL, this application provides an intuitive interface for viewing and organizing departments, roles, and employees within the company.As a business owner, you can easily navigate through various options to perform essential tasks such as viewing all departments, roles, and employees, adding new departments, roles, and employees, as well as updating employee roles. This empowers you to effectively organize and plan your business operations.
 
-Acceptance Criteria:
-GIVEN a command-line application that accepts user input
-WHEN I start the application
-THEN I am presented with the following options: view all departments, view all roles, view all employees, add a department, add a role, add an employee, and update an employee role
-WHEN I choose to view all departments
-THEN I am presented with a formatted table showing department names and department ids
-WHEN I choose to view all roles
-THEN I am presented with the job title, role id, the department that role belongs to, and the salary for that role
-WHEN I choose to view all employees
-THEN I am presented with a formatted table showing employee data, including employee ids, first names, last names, job titles, departments, salaries, and managers that the employees report to
-WHEN I choose to add a department
-THEN I am prompted to enter the name of the department and that department is added to the database
-WHEN I choose to add a role
-THEN I am prompted to enter the name, salary, and department for the role and that role is added to the database
-WHEN I choose to add an employee
-THEN I am prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
-WHEN I choose to update an employee role
-THEN I am prompted to select an employee to update and their new role and this information is updated in the database
+By selecting the "View all departments" option, you can instantly access a well-formatted table displaying department names and corresponding department IDs. Similarly, the "View all roles" option presents you with comprehensive information including job titles, role IDs, associated departments, and respective salaries.
 
+When choosing the "View all employees" option, a neatly formatted table is generated, presenting employee data including their unique IDs, first names, last names, job titles, departments, salaries, and the managers they report to. This holistic view allows for quick assessment and analysis of employee information.
+
+To add a new department, simply select the "Add a department" option and provide the desired department name. The application will automatically add the new department to the database. Similarly, when selecting the "Add a role" option, you will be prompted to enter the name, salary, and department for the role you wish to add.
+
+Adding an employee is a seamless process through the "Add an employee" option. You will be guided to enter the employee's first name, last name, role, and manager, after which the application will update the database accordingly.
+
+Lastly, the "Update an employee role" option allows you to select a specific employee and update their role. The application prompts you to choose the employee to be updated and their new role, facilitating efficient role management within the company.
+
+To enhance your understanding of the application's functionality and ensure its proper usage, it is recommended to watch the provided walkthrough video demonstrating the application's features and meeting all the acceptance criteria.
+
+Tools Used:
+
+Node.js: JavaScript runtime used for executing the application.
+Inquirer: A command-line interface package for prompting user input and generating interactive prompts.
+MySQL: A popular relational database management system used for storing and managing the employee data.
+npm: The package manager for Node.js, used to install the necessary dependencies, such as Inquirer.
 
 # <Your-Project-Title>
 
